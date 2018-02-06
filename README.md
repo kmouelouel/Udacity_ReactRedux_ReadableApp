@@ -44,4 +44,4 @@ SOFTWARE.
 
 ## Screenshots
 
-![Readable screenshot](screenshots/mainpage.png)
+![Readable screenshot](frontend/screenshots/mainpage.png)
