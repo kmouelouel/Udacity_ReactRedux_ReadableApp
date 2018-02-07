@@ -11,7 +11,7 @@ import '../styles/App.css';
 class Home extends Component {
 
     componentDidMount() {
-        this.props.categories.length === 0 && this.props.fetchCategories();
+        this.props.categories.length === 0 && this.props.fetchCategory();
     }
 
     render() {
@@ -48,10 +48,6 @@ class Home extends Component {
 const mapStateToProps = ({ categories }) => ({
     categories
 });
-
-const mapDispatchToProps = (dispatch) => ({
-    fetchCategories: () => dispatch(fetchCategory())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+ 
+export default connect(mapStateToProps, { fetchCategory})(Home);
 

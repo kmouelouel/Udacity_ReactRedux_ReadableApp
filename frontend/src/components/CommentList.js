@@ -30,8 +30,7 @@ const CommentList = (props) => {
 const mapDispatchToProps = (dispatch) => ({
     changeCurrentComment: (comment) => dispatch(changeCurrentComment(comment)),
     deleteComment: (id) => {
-        window.confirm('Do you want to delete this comment ?')
-            && dispatch(deleteComment(id))
+        dispatch(deleteComment(id))
     }
 });
 

@@ -13,7 +13,7 @@ const PostDetail = (props) => {
                 onepost={post}
                 handleVote={handleVote}
                 changeCurrent={changeCurrentPost}
-                deleteP={deletePost}
+                deletePost={deletePost}
             />
         </div>
     )
@@ -22,8 +22,7 @@ const PostDetail = (props) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     changeCurrentPost: (post) => { dispatch(changeCurrentPost(post)) },
     deletePost: (id) => {
-        window.confirm('Do you want to delete the post?')
-            && dispatch(deletePost(id))
+            dispatch(deletePost(id))
             && ownProps.history.push(`/${ownProps.post.category}`)
     }
 });
