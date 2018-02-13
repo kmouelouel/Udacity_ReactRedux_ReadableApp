@@ -91,15 +91,16 @@ export const addComment = (body, author, parentId) => {
     }).then(res => res.json());
 };
 
-export const updateComment = (id, body, timestamp) => {
-    return fetch(`${serverUrl}/comments/${id}`, {
-        method: 'PUT',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ timestamp, body })
-    }).then(res => res.json());
+export const updateComment = (id, body) => { 
+    const timestamp = (new Date()).getTime();
+  return fetch(`${serverUrl}/comments/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ timestamp, body })
+  }).then(res => res.json());
 };
 
 export const deleteComment = (id) => {

@@ -7,7 +7,7 @@ import '../styles/App.css';
 
 const PostTable = (props) => {
 
-    const { posts, sortKey, sortOrder, changeSortHandler, changeCurrentPost, deletePost, votePost } = props;
+    const { posts, changeSortHandler, changeCurrentPost, deletePost, votePost } = props;
 
     return (
         <div>
@@ -28,6 +28,7 @@ const PostTable = (props) => {
                         </div>
                         </div>
                     <div className='delete-margin'>Posted by <b> {post.author}</b> in <p className='time'> {dateFormat(post.timestamp)}</p> </div>
+                    <div className='delete-margin'><p>{post.body}</p></div>
                     <p className='delete-margin'>{post.commentCount} Comment(s)</p>
                     <div>  
                         <button onClick={() => votePost(post, 'upVote')} className='small-icon  like'></button>

@@ -19,10 +19,9 @@ class CreateEditPost extends Component {
                     contentLabel='Modal'
                     ariaHideApp={false}
                 >
-                    <h3>Post</h3>
-                    <table>  
-                        <tbody>
-                            <tr><td>Category</td><td>
+                    <h3>  {currentPost.id ? "Edit " : "New "} Post</h3>
+                   <form>
+                             <label>Category :   
                             {currentPost.id
                                 ? null
                                 :
@@ -32,32 +31,34 @@ class CreateEditPost extends Component {
                                         ))}
                                         </select>
                           
-                            }  </td></tr>
-                            <tr><td>Title</td><td>
+                                 }   </label>
+                             <br />
+                             <label> Title 
                             {currentPost.id
-                                ?<input type="text" ref="title" placeholder={currentPost.title} /> 
-                                :  <input type="text" ref="title" />
+                                ?<input type="text" ref="title" defaultValue={currentPost.title} /> 
+                                    : <input type="text" ref="title" placeholder='Please, Enter the title'/>
                             }
-                                </td></tr>
-                            <tr><td>Author</td><td>
+                             </label> 
+                            <label> Content 
+                            {currentPost.id
+                                ?<textarea cols="72" rows="4" ref="body"  defaultValue={currentPost.body} /> 
+                                    : <textarea cols="72" rows="4" ref="body" placeholder='Add your comment here' />
+                            }
+                            </label> 
+                            <label> Author
                                 {currentPost.id
-                                ? <input type="text" ref="author" placeholder={currentPost.author} />
-                                : <input type="text" ref="author" />
+                                    ? <span>: {currentPost.author} </span>
+                                    : <input type="text" ref="author" placeholder='Please, enter your name' />
                                 }
-                            </td></tr>
-                            <tr><td>Detail</td><td>
+                            </label> 
+                            <br /> <br />
+                            <button onClick={handleClose}>Cancel</button>
                             {currentPost.id
-                                ?<textarea cols="72" rows="4" ref="body"  placeholder={currentPost.body} /> 
-                                : <textarea cols="72" rows="4" ref="body"  />
+                                ? <button onClick={() => handleUpdate(currentPost.id, this.refs.title.value, this.refs.body.value)}>Submit</button>
+                                : <button onClick={() => handleAdd(this.refs.title.value, this.refs.body.value, this.refs.author.value, this.refs.category.value)} >Submit</button>
                             }
-                            </td></tr>
-                        </tbody>
-                    </table>
-                    <button onClick={handleClose}>Cancel</button>                               
-                    {currentPost.id
-                        ? <button onClick={() => handleUpdate(currentPost.id, this.refs.title.value, this.refs.body.value)}>Submit</button>
-                        : <button onClick={() => handleAdd(this.refs.title.value, this.refs.body.value, this.refs.author.value,this.refs.category.value)} >Submit</button>
-                    }
+                      </form>
+                   
                     
                 </Modal>
 

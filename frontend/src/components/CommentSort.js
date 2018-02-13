@@ -5,7 +5,7 @@ import '../styles/App.css';
 
 const CommentSort = (props) => {
 
-    const { commentsNum, sortComment, sortKey, sortOrder } = props;
+    const { commentsNum, sortComment, sortOrder } = props;
     return (
         <div className='post-header'>  
             <div className='post-title-header'>

@@ -4,10 +4,12 @@ import Modal from 'react-modal';
 import { showCommentDialog, addComment, updateComment } from '../actions/comments';
 
 class CreateEditComment extends Component {
-
+   
+    
+   
     render() {
         const { handleClose, handleAdd, handleUpdate,isOpen, parentId, currentComment } = this.props;
-
+        
         return (
             
             <div>
@@ -19,29 +21,29 @@ class CreateEditComment extends Component {
                     contentLabel='Modal'
                     ariaHideApp={false}
                 >
-                    <h3>Comment</h3>
+                    <h3>{currentComment.id ? "Edit" : "New"} Comment</h3>
                     <p>Please Add your comment below</p>
-                    <table>
-                        <tbody>
-                                <tr><td>Comment</td><td>
-                            {currentComment.id
-                                ?  <textarea cols="72" rows="4" ref="comment" placeholder={currentComment.body} /> 
-                                : <textarea cols="72" rows="4" ref="comment"/> 
+                    <form>
+                        <label>Comment
+                             {currentComment.id
+                                ? <textarea cols="72" rows="4" ref='comment' defaultValue={currentComment.body }  />
+                                : <textarea cols="72" rows="4" ref='comment' placeholder='Please, enter your comment'/>
                             }
-                               </td></tr>
-                                <tr><td>Author</td><td>
-                            {currentComment.id
-                                ? <input  ref="author" placeholder={currentComment.author} />
-                                : <input  ref="author" />
+                         </label> 
+                        <label>Author
+                                {currentComment.id
+                                ? <span> : {currentComment.author} </span>
+                                : <input type='text' ref='author'  placeholder='Please, Enter your name'   />
                             }
-                                </td></tr> 
-                    </tbody>           
-                </table> 
-                 <button onClick={handleClose}>Cancel</button>
+                        </label>
+                        <br /><br />
+                     <button onClick={handleClose}>Cancel</button>
                     {currentComment.id
-                        ? <button onClick={() => handleUpdate(currentComment.id, this.refs.comment.value)}>Submit</button>
-                        : <button onClick={() => handleAdd(this.refs.comment.value, this.refs.author.value, parentId)}>Submit</button>
-                    }
+                            ? <button onClick={() => handleUpdate(this.refs.comment.value, currentComment.id)}>Submit</button>
+                            : <button onClick={() => handleAdd(this.refs.comment.value, this.refs.author.value, parentId)}>Submit</button>
+                    }             
+                  </form>
+               
                   
                 </Modal>
 
@@ -50,16 +52,15 @@ class CreateEditComment extends Component {
     }
 };
 
-const mapStateToProps = ({ comments, username }) => ({
+const mapStateToProps = ({ comments }) => ({
     isOpen: comments.isShowCommentDialog,
-    username,
     currentComment: comments.currentComment
 });
 
 const mapDispatchToProps = (dispatch) => ({
     handleClose: () => dispatch(showCommentDialog(false)),
     handleAdd: (body, author, parentId) => dispatch(addComment(body, author, parentId)),
-    handleUpdate: (body, id) => dispatch(updateComment(body, id))
+    handleUpdate: (body, id) => dispatch(updateComment(id,body))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateEditComment);

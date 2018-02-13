@@ -6,7 +6,7 @@ import Loading from './Loading';
 import PostList from './PostList';
 import AddBtn from './AddBtn';
 import CreateEditPost from './CreateEditPost';
-import '../styles/App.css';
+import '../styles/App.css'; 
 
 class Home extends Component {
 
@@ -17,6 +17,7 @@ class Home extends Component {
     render() {
         const { categories } = this.props;
         return (
+             
             <div className='section'>
 
                 {categories && categories.length > 0
@@ -39,7 +40,7 @@ class Home extends Component {
                     </div>
 
                     : <Loading />}
-            </div>
+            </div>            
         )
     }
 

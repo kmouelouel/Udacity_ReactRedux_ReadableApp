@@ -35,7 +35,7 @@ class Post extends Component {
                         <div className='section'>
                             <div className='nav'>
                                 <div className='category-nav'>
-                                    <Link to="/" className='link'>Home</Link> / <Link to={`/${match.params.category}`}>{match.params.category}</Link> / {post.title}
+                                    <Link to="/" className='link'>Home</Link> / <Link className='link' to={`/${match.params.category}`}>{match.params.category}</Link> / {post.title}
                                 </div>
                             </div>
 
